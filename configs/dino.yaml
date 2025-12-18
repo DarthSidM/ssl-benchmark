@@ -1,0 +1,50 @@
+# =========================
+# DINO-style ViT Configuration
+# =========================
+
+experiment:
+  name: dino_vit_small_stl10
+  seed: 42
+
+dataset:
+  name: stl10
+  data_dir: ./data
+  image_size: 96
+  num_workers: 8
+
+model:
+  backbone: vit_small
+  patch_size: 16
+
+  projection_head:
+    input_dim: 384
+    hidden_dim: 2048
+    output_dim: 256
+
+training:
+  method: dino
+  epochs: 200
+  batch_size: 128
+  precision: 16
+
+optimizer:
+  name: adamw
+  lr: 0.0005
+  weight_decay: 0.0001
+
+scheduler:
+  name: cosine
+
+teacher:
+  momentum: 0.996
+  temperature: 0.04
+
+student:
+  temperature: 0.1
+
+augmentations:
+  global_crops: 2
+  local_crops: 6
+  color_jitter: true
+  gaussian_blur: true
+  solarization: true

@@ -1,0 +1,44 @@
+# =========================
+# SimCLR Configuration
+# =========================
+
+experiment:
+  name: simclr_resnet18_stl10
+  seed: 42
+
+dataset:
+  name: stl10
+  data_dir: ./data
+  image_size: 96
+  num_workers: 8
+
+model:
+  backbone: resnet18
+  projection_head:
+    input_dim: 512
+    hidden_dim: 512
+    output_dim: 128
+
+training:
+  method: simclr
+  epochs: 200
+  batch_size: 256
+  precision: 16
+
+optimizer:
+  name: adamw
+  lr: 0.0003
+  weight_decay: 0.0001
+
+scheduler:
+  name: cosine
+  warmup_epochs: 10
+
+loss:
+  temperature: 0.5
+
+augmentations:
+  random_resized_crop: true
+  color_jitter: true
+  gaussian_blur: true
+  horizontal_flip: true
