@@ -21,7 +21,7 @@ model:
 
 training:
   method: simclr
-  epochs: 200
+  epochs: 10
   batch_size: 256
   precision: 16
 

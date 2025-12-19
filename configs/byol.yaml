@@ -27,7 +27,7 @@ model:
 
 training:
   method: byol
-  epochs: 200
+  epochs: 50
   batch_size: 256
   precision: 16
 
